@@ -39,7 +39,7 @@ function mostrar()
 	cantidadHddMax = 0;
 	cantidadSddMinimo = 0;
 
-	while(contador < 6)
+	while(contador < 5)
 	{
 		tipo = prompt("Ingrese tipo de disco rígido : H : hdd, S : SSD o M : SSDM2");
 
@@ -58,7 +58,7 @@ function mostrar()
 		}
 		cantidad = prompt("ingrese Cantidad : Maximo 50 Unidades");
 		cantidad = parseInt(cantidad);
-		while(isNaN(cantidad)|| cantidad <0 || cantidad >50)
+		while(isNaN(cantidad)|| cantidad <1 || cantidad >50)
 		{
 			cantidad = prompt("ingrese Cantidad : Maximo 50 Unidades");
 			cantidad = parseInt(cantidad);

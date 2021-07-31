@@ -16,7 +16,6 @@ function mostrar()
 {
   var tipo;
   var cantidad;
-  var precio;
   var precioBolsa;
   var descuento;
   var precioDesc;
@@ -51,6 +50,7 @@ function mostrar()
   precioTotal = 0;
   bolsasTotal = 0;
 
+
   while(respuesta == true)
   {
     tipo = prompt("ingrese tipo de producto :  Yerba, Azúcar o  Café");
@@ -60,44 +60,44 @@ function mostrar()
       tipo = prompt("Error,ingrese tipo de producto :  Yerba, Azúcar o  Café");
     }
 
-    cantidad = prompt("ingrese Cantidad : Maximo 50 Unidades");
+    cantidad = prompt("ingrese Cantidad");
     cantidad = parseInt(cantidad);
 
-    while(isNaN(cantidad)|| cantidad < 0)
+    while(isNaN(cantidad) || cantidad < 1)
     {
-      cantidad = prompt("ingrese Cantidad");
+      cantidad = prompt("Error,ingrese Cantidad");
       cantidad = parseInt(cantidad);
     }
 
-    precioBolsa = prompt("Ingrese cantidad de bolsas");
+    precioBolsa = prompt("Ingrese precio");
     precioBolsa = parseFloat(precioBolsa);
 
-    while(isNaN(precio) || precio <0)
+    while(isNaN(precioBolsa) || precioBolsa <1)
     {
-      precioBolsa = prompt("Ingrese cantidad de bolsas");
+      precioBolsa = prompt("Error;Ingrese precio");
       precioBolsa = parseFloat(precioBolsa);
     }
     switch(tipo)
     {
       case "yerba":
         bolsasYerba = bolsasYerba + cantidad;
-        precioBolsaYerba = precio * bolsasYerba;
+        precioBolsaYerba = precioBolsa * bolsasYerba;
         totalPrecioYerba = precioBolsaYerba;
       break;
       case "azucar":
         bolsasAzucar = bolsasAzucar + cantidad;
-        precioBolsaAzucar = precio * bolsasAzucar;
+        precioBolsaAzucar = precioBolsa * bolsasAzucar;
         totalPrecioAzucar = precioBolsaAzucar * bolsasAzucar;
       case "cafe":
         bolsasCafe = bolsasCafe + cantidad;
-        precioBolsaCafe = precio * precioBolsaCafe;
+        precioBolsaCafe = precioBolsa * precioBolsaCafe;
         totalPrecioCafe = precioBolsaCafe * bolsasCafe;
       break;
     } 
 
     if(precioBolsa < precioMinimo ||banderPrimeMinimo == true)
     {
-      precioMinimo = precio;
+      precioMinimo = precioBolsa;
       tipoMasbarato = tipo;
       banderPrimeMinimo = false;
     }
@@ -130,7 +130,7 @@ function mostrar()
   if(descuento !=0)
   {
     descuento = precioBruto * descuento;
-    precioDesc = precioDesc - descuento;
+    precioDesc = precioBruto - descuento;
     document.write("El precio con descuento es de : "+precioDesc+ " <br>");
   }
   
@@ -148,6 +148,7 @@ function mostrar()
     {
       document.write("La mayor cantidad de bolsas es de yerba <br>");
     }
-    document.write("el tipo mas barato es "+tipoMasbarato+ " <br>");
   }
+
+  document.write("el tipo mas barato es "+tipoMasbarato+ " <br>");
 }
