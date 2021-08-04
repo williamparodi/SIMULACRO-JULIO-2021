@@ -17,6 +17,138 @@ function mostrar()
 {
 	var tipo;
 	var precio;
+	var cantidad;
+	var marca;
+	var capacidad;
+	var contador;
+	var marcaSsdBarato;
+	var precioMinimo;
+	var cantidadSsdBarato;
+	var banderaDelPrimero;
+	var banderaDelPrimerMaximo;
+	var tipoHddCaro;
+	var precioMaximo;
+	var capacidadHddCaro;
+	var cantidadHddCaro;
+	var acumuladorHdd;
+
+	acumuladorHdd = 0;
+	contador = 0;
+	banderaDelPrimero = true;
+	banderaDelPrimerMaximo = false;
+
+	while(contador <5)
+	{
+		tipo = prompt("Ingrese tipoo HDD, SSD o SSDM2");
+
+		while(tipo != "hdd" && tipo != "ssd" && tipo != "ssdm2")
+		{
+			tipo = prompt("Error;Ingrese tipoo HDD, SSD o SSDM2");
+		}
+
+		precio = prompt("Ingrese precio");
+		precio = parseFloat(precio);
+
+		while(isNaN(precio)|| precio <5000 || precio > 18000)
+		{
+			precio = prompt("Error;Ingrese precio");
+			precio = parseFloat(precio);
+		}
+
+		cantidad = prompt("ingrese cantidad");
+		cantidad = parseInt(cantidad);
+
+		while(isNaN(cantidad)|| cantidad < 1 || cantidad >50)
+		{
+			cantidad = prompt("Error;ingrese cantidad");
+			cantidad = parseInt(cantidad);
+		}
+
+		marca = prompt("Ingrese la marca : Seagate  Western Digital, Kingston");
+
+		while(marca != "seagate" && marca != "western digital" && marca != "kingston")
+		{
+			marca = prompt("Error; Ingrese la marca : Seagate  Western Digital, Kingston");
+		}
+
+		capacidad = prompt("ingrese capacidad 250Gb, 500Gb, 1Tb, 2Tb");
+
+		while(capacidad != "250" && capacidad != "500" && capacidad != "1tb" && capacidad != "2tb")
+		{
+			capacidad = prompt("Error;ingrese capacidad 250Gb, 500Gb, 1Tb, 2Tb");
+		}
+		if(precio < precioMinimo && tipo == "ssd" || banderaDelPrimero == true)
+		{
+			precioMinimo = precio;
+			marcaSsdBarato = marca;
+			cantidadSsdBarato = cantidad;
+			banderaDelPrimero = false; 
+		}
+		if(tipo == "hdd")
+		{
+			acumuladorHdd = acumuladorHdd + cantidad;
+		}
+		else
+		{
+			if(precio > precioMaximo || banderaDelPrimerMaximo == false)
+			{
+				precioMaximo = precio;
+				tipoHddCaro = tipo;
+				capacidadHddCaro = capacidad;
+				cantidadHddCaro = cantidad;
+				banderaDelPrimerMaximo = true;
+			}
+		}
+
+		contador = contador + 1;
+	}
+
+	document.write("El ssd mas barato es de marca : "+marcaSsdBarato+ " y la cantidad de unidades es de : " +cantidadSsdBarato+ " <br>");
+
+	document.write("El tipo de Hdd mas caro es : "+tipoHddCaro+ " y la capacidad es de : "+ capacidadHddCaro+ " <br>");
+
+	document.write("La cantidad de hdd es de : "+cantidadHddCaro+ " <br>");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
+	var tipo;
+	var precio;
 	var cantidadUnidades;
 	var marca;
 	var capacidad;
@@ -80,7 +212,7 @@ function mostrar()
 			capacidad = prompt("Error;ingrese capacidad: 250Gb, 500Gb, 1Tb, 2Tb");
 		}
 
-		if(precio < precioMinimo && tipo =="ssd"|| banderaPrecioMinino == true)
+		if(precio < precioMinimo && tipo =="ssd"|| banderaPrecioMinino == true)// Probar q es mejor !!!
 		{
 			precioMinimo = precio;
 			marcaSsdBarato = marca;
@@ -90,7 +222,7 @@ function mostrar()
 
 		if(tipo == "hdd")
 		{
-			acumuladorCantidaHddTotal = acumuladorCantidaHddTotal + cantidadUnidades;
+			acumuladorCantidaHddTotal = acumuladorCantidaHddTotal + cantidadUnidades;///mm esto habria que verlo
 		}
 		else
 		{
@@ -108,7 +240,7 @@ function mostrar()
 
 	document.write("el mas caro de los hdd es de : "+capacidadHddCaro+ "con una cantidad de unidades de : "+cantidadUnidadesHddCaro+ "<br>" );
 
-
+	/*
 
 
 
