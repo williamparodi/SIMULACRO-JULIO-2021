@@ -16,6 +16,152 @@ e) El promedio de edad de los hombres que se aplicaron la vacuna SputnikV y no p
 
 function mostrar()
 {
+
+	var nombre;
+	var edad;
+	var genero;
+	var vacuna;
+	var temp;
+	var respuesta;
+	var nombreMayorTemp;
+	var vacunaMayorTemp;
+	var tempMax;
+	var banderaPrimerTemp;
+    var contadorFemeninoSput;
+    var contadorNbAztraOtra;
+    var contadorHombreSinFiebre;
+    var edadHombresSinFiebre;
+    var personasVacunaAztraFiebre;
+    var promedioEdadHombres;
+
+
+	respuesta = true;
+	contadorFemenino = 0;
+	contadorFemeninoSput = 0;
+	contadorNbAztraOtra = 0;
+	contadorHombreSinFiebre = 0;
+	edadHombresSinFiebre = 0;
+	personasVacunaAztraFiebre = 0;
+	banderaPrimerTemp = false;
+
+	while(respuesta == true)
+	{
+		nombre = prompt("Ingrese nombre");
+
+		edad = prompt("Ingrese edad");
+		edad = parseInt(edad);
+
+		while(isNaN(edad) || edad < 0 || edad > 150)
+		{
+			edad = prompt("Error;Ingrese edad");
+			edad = parseInt(edad);
+		}
+
+		genero = prompt("Ingrese genero : “F”, “M”, “NB”");
+		while(genero != "masculino" && genero != "femenino" && genero != "no binario")
+		{
+			genero = prompt("Error;Ingrese genero :“F”, “M”, “NB”");
+		}
+
+		vacuna = prompt("ingrese vacuna : “SputnikV”, “AstraZeneca”, “Otra”.");
+		while(vacuna !="sputnik"&&vacuna!="aztrazeneca"&& vacuna != "otra")
+		{
+			vacuna = prompt("Error;ingrese vacuna : “SputnikV”, “AstraZeneca”, “Otra”.");
+		}
+
+		temp = prompt("Ingrese tempertura corporal :");
+		temp = parseInt(temp);
+
+		while(isNaN(temp) || temp <35 || temp > 41)
+		{
+			temp = prompt("Error;Ingrese tempertura corporal :");
+			temp = parseInt(temp);
+		}
+
+		if(temp > tempMax || banderaPrimerTemp == false)
+		{
+			tempMax = temp;
+			nombreMayorTemp = nombre;
+			vacunaMayorTemp = vacuna;
+			banderaPrimerTemp = true;
+		}
+		if(vacuna == "aztrazeneca" && temp >38)
+		{
+			personasVacunaAztraFiebre = personasVacunaAztraFiebre + 1;
+		}
+
+		switch(genero)
+		{
+			case "femenino":
+				if(vacuna == "sputnik")
+				{
+					contadorFemeninoSput = contadorFemeninoSput +1;
+				}
+			break;
+			case "no binario":
+				if(vacuna == "aztrazeneca" || vacuna == "otra")
+				{
+					contadorNbAztraOtra = contadorNbAztraOtra + 1;
+				}
+			break;
+			case "masculino":
+				if(vacuna == "sputnik" && temp < 38)
+				{
+					contadorHombreSinFiebre = contadorHombreSinFiebre + 1;
+					edadHombresSinFiebre = edadHombresSinFiebre + edad;
+				}
+			break;
+			default:
+			break;
+
+		}
+
+
+
+		respuesta = confirm("Desea continuar??");
+
+	}
+
+	document.write("El nombre de la persona con mayor tempertura es : "+nombreMayorTemp+ " <br>");
+
+	if(contadorFemeninoSput != 0)
+	{
+		document.write(" la cantidad de mujeres con la vacuna sputnik es : "+contadorFemeninoSput+ " <br>");
+	}
+	if(contadorNbAztraOtra != 0)
+	{
+		document.write("La cantidad de genero no binario con la aztrazeneca u otra es : "+contadorNbAztraOtra+ " <br>");
+	}
+	if(personasVacunaAztraFiebre != 0)
+	{
+		document.write(" la cantidad de personas con aztrazeneca con fiebre es de "+personasVacunaAztraFiebre+ " <br>");
+	}
+	if(contadorHombreSinFiebre != 0)
+	{
+		promedioEdadHombres = edadHombresSinFiebre / contadorHombreSinFiebre;
+		document.write("La edad promedio de hombres sin fiebre es de : "+promedioEdadHombres+ " <br>");
+	}
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
 	var nombre;
 	var edad;
 	var genero;
@@ -138,7 +284,7 @@ function mostrar()
 	{
 		document.write("no se pudo calcular");
 	}
-
+ */
 
 
 }	

@@ -16,6 +16,170 @@ function mostrar()
 {
   var tipo;
   var cantidad;
+  var precio;
+  var acumuladorYerba;
+  var acumuladorAzucar;
+  var acumuladorCafe;
+  var precioYerba;
+  var precioCafe;
+  var precioAzucar;
+  var totalPrecioYerba;
+  var totalPrecioAzucar;
+  var totalPrecioCafe;
+  var respuesta;
+  var tipoMasBarato;
+  var precioMinimo;
+  var banderaPrimerMinino;
+  var precioBruto;
+  var precioDesc;
+  var descuento;
+  var totalBolsas;
+
+
+  banderaPrimerMinino = true;
+  respuesta = true;
+  acumuladorCafe = 0;
+  acumuladorAzucar = 0;
+  acumuladorYerba = 0;
+  totalPrecioCafe = 0;
+  totalPrecioAzucar = 0;
+  totalPrecioYerba = 0;
+
+
+  while(respuesta == true)
+  {
+    tipo = prompt("Ingrese tipo de producto Yerba, Azúcar, Café");
+
+    while(tipo != "yerba" && tipo != "azucar" && tipo != "cafe")
+    {
+      tipo = prompt("Error,Ingrese tipo de producto Yerba, Azúcar, Café");
+    }
+
+    cantidad = prompt("ingrese cantidad de bolsas ");
+    cantidad = parseInt(cantidad);
+
+    while(isNaN(cantidad) || cantidad <1)
+    {
+      cantidad = prompt("Error;ingrese cantidad de bolsas ");
+      cantidad = parseInt(cantidad);
+    }
+
+    precio = prompt("ingrese precio");
+    precio = parseFloat(precio);
+
+    while(isNaN(precio)|| precio < 1)
+    {
+      precio = prompt("Error;ingrese precio");
+      precio = parseFloat(precio);
+    }
+
+    switch(tipo)
+    {
+      case "yerba":
+        acumuladorYerba = acumuladorYerba + cantidad;
+        precioYerba = precio * cantidad;
+        totalPrecioYerba = totalPrecioYerba + precioYerba;
+      break;
+      case "cafe":
+        acumuladorCafe = acumuladorCafe + cantidad;
+        precioCafe = precio * cantidad;
+        totalPrecioCafe = totalPrecioCafe + precioCafe;
+      break;
+      case "azucar":
+        acumuladorAzucar = acumuladorAzucar + cantidad;
+        precioAzucar = precio * cantidad;
+        totalPrecioAzucar = totalPrecioAzucar + precioAzucar;
+      break;
+      default:
+      break;
+    }
+
+    if(precio < precioMinimo || banderaPrimerMinino == true)
+    {
+      precioMinimo = precio;
+      tipoMasBarato = tipo;
+      banderaPrimerMinino = false;
+    }
+
+    respuesta = confirm("Desea continuar?");
+  }
+
+  precioBruto = totalPrecioCafe + totalPrecioAzucar + totalPrecioYerba;
+
+  totalBolsas = acumuladorCafe + acumuladorYerba + acumuladorAzucar;
+
+  document.write("El precio bruto a pagar es de : "+precioBruto+ " <br>");
+
+  if(totalBolsas > 5 || totalBolsas <11)
+  {
+    descuento = 0.10;
+  }
+  else
+  {
+    if(totalBolsas >10)
+    {
+      descuento = 0.15;
+    }
+    else
+    {
+      descuento = 0;
+    }
+  }
+  if(acumuladorCafe > acumuladorYerba && acumuladorCafe > acumuladorAzucar)
+  {
+    document.write("El tipo con mas cantidad de bolsas es : cafe <br>");
+  }
+  else
+  {
+    if(acumuladorYerba > acumuladorAzucar&& acumuladorYerba > acumuladorCafe)
+    {
+      document.write("El tipo con mas cantidad de bolsas es : yerba <br>");
+    }
+    else
+    {
+      document.write("El tipo con mas cantidad de bolsas es : azucar <br>");
+    }
+  }
+
+  document.write("El tipo con la compra mas barata es : "+tipoMasBarato+ " <br>");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*
+  var tipo;
+  var cantidad;
   var precioBolsa;
   var descuento;
   var precioDesc;
@@ -82,7 +246,7 @@ function mostrar()
       case "yerba":
         bolsasYerba = bolsasYerba + cantidad;
         precioBolsaYerba = precioBolsa * bolsasYerba;
-        totalPrecioYerba = precioBolsaYerba;
+        totalPrecioYerba = precioBolsaYerba * bolsasYerba;
       break;
       case "azucar":
         bolsasAzucar = bolsasAzucar + cantidad;
@@ -150,5 +314,5 @@ function mostrar()
     }
   }
 
-  document.write("el tipo mas barato es "+tipoMasbarato+ " <br>");
+  document.write("el tipo mas barato es "+tipoMasbarato+ " <br>");*/
 }
